@@ -1,10 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
 
 #define DESKTOP_WIDTH 80
 #define DESKTOP_HEIGHT 25
-
 
 typedef struct {
     int width;
@@ -35,13 +35,13 @@ void FillDesktop() {
             printf(" ");
         }
     }
-    SetColor(7); 
+    // SetColor(7); 
 }
 
 void DrawWindow(Window win) {
     SetColor(win.color);
 
-    
+   
     gotoxy(win.x, win.y);
     printf("+");
     for (int i = 0; i < win.width; i++) printf("-");
@@ -55,17 +55,17 @@ void DrawWindow(Window win) {
         printf("|");
     }
 
-    
+  
     gotoxy(win.x, win.y + win.height + 1);
     printf("+");
     for (int i = 0; i < win.width; i++) printf("-");
     printf("+\n");
 
-    
+  
     gotoxy(win.x + 2, win.y);
     printf("%s", win.name);
 
-    SetColor(7); 
+    SetColor(7);
 }
 
 int main() {
@@ -73,7 +73,7 @@ int main() {
 
     Window windows[2];
 
-   
+  
     windows[0].width = 20;
     windows[0].height = 7;
     windows[0].x = 10;
@@ -81,7 +81,7 @@ int main() {
     windows[0].color = 15; 
     strcpy(windows[0].name, "MyWindow");
 
-   
+  
     windows[1].width = 20;
     windows[1].height = 7;
     windows[1].x = 15;
@@ -95,3 +95,4 @@ int main() {
 
     return 0;
 }
+
