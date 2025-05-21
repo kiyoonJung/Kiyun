@@ -1,0 +1,8 @@
+.vs/
+*.suo
+*.user
+*.vcxproj.user
+*.vsdx
+x64/
+Debug/
+packages/
