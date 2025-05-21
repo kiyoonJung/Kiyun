@@ -1,4 +1,5 @@
 .vs/
+<<<<<<< HEAD
 *.suo
 *.user
 *.vcxproj.user
@@ -6,3 +7,9 @@
 x64/
 Debug/
 packages/
+=======
+*.user
+*.suo
+*.vcxproj.user
+*.vsdx
+>>>>>>> 17a52ffabc56a92fc490c5bc48f156f6af449b26

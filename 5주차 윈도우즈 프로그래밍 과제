@@ -1,0 +1,98 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <windows.h>
+#include <string.h>
+
+#define DESKTOP_WIDTH 80
+#define DESKTOP_HEIGHT 25
+
+typedef struct {
+    int width;
+    int height;
+    int x;
+    int y;
+    char name[50];
+    int color; 
+} Window;
+
+void gotoxy(int x, int y) {
+    COORD Cur;
+    Cur.X = x;
+    Cur.Y = y;
+    HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(output, Cur);
+}
+
+void SetColor(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void FillDesktop() {
+    SetColor(2); 
+    for (int y = 0; y < DESKTOP_HEIGHT; y++) {
+        gotoxy(0, y);
+        for (int x = 0; x < DESKTOP_WIDTH; x++) {
+            printf(" ");
+        }
+    }
+    // SetColor(7); 
+}
+
+void DrawWindow(Window win) {
+    SetColor(win.color);
+
+   
+    gotoxy(win.x, win.y);
+    printf("+");
+    for (int i = 0; i < win.width; i++) printf("-");
+    printf("+\n");
+
+   
+    for (int j = 0; j < win.height; j++) {
+        gotoxy(win.x, win.y + 1 + j);
+        printf("|");
+        for (int i = 0; i < win.width; i++) printf(" ");
+        printf("|");
+    }
+
+  
+    gotoxy(win.x, win.y + win.height + 1);
+    printf("+");
+    for (int i = 0; i < win.width; i++) printf("-");
+    printf("+\n");
+
+  
+    gotoxy(win.x + 2, win.y);
+    printf("%s", win.name);
+
+    SetColor(7);
+}
+
+int main() {
+    FillDesktop();
+
+    Window windows[2];
+
+  
+    windows[0].width = 20;
+    windows[0].height = 7;
+    windows[0].x = 10;
+    windows[0].y = 3;
+    windows[0].color = 15; 
+    strcpy(windows[0].name, "MyWindow");
+
+  
+    windows[1].width = 20;
+    windows[1].height = 7;
+    windows[1].x = 15;
+    windows[1].y = 5;
+    windows[1].color = 14; 
+    strcpy(windows[1].name, "MyWindow");
+
+    for (int i = 0; i < 2; i++) {
+        DrawWindow(windows[i]);
+    }
+
+    return 0;
+}
+
